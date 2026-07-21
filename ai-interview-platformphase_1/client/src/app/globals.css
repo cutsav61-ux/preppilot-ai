@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Design tokens — "lab notebook / graded transcript" palette.
+  Values are HSL triples (no hsl() wrapper) so Tailwind can apply
+  alpha-value opacity modifiers, e.g. bg-ink/5.
+*/
+@layer base {
+  :root {
+    --paper: 220 23% 97%; /* #F6F7FA */
+    --surface: 0 0% 100%; /* card surfaces */
+    --grid-line: 220 20% 90%; /* #E2E5EC */
+    --ink: 222 24% 10%; /* #12151C */
+    --ink-soft: 226 12% 35%; /* #4A5164 */
+    --border: 220 18% 88%;
+
+    --cobalt: 228 100% 61%; /* #2F5DFF */
+    --cobalt-soft: 228 100% 95%;
+    --amber: 36 79% 58%; /* #E8A33D */
+    --amber-soft: 36 79% 93%;
+    --coral: 11 74% 55%; /* #E1573F */
+    --coral-soft: 11 74% 94%;
+  }
+
+  .dark {
+    --paper: 222 26% 6%; /* #0B0D12 */
+    --surface: 222 22% 9%; /* #12151C */
+    --grid-line: 222 18% 15%; /* #1D212B */
+    --ink: 220 24% 92%; /* #E7E9EF */
+    --ink-soft: 222 12% 65%; /* #9AA1B2 */
+    --border: 222 16% 18%;
+
+    --cobalt: 228 100% 68%;
+    --cobalt-soft: 228 40% 16%;
+    --amber: 38 85% 65%;
+    --amber-soft: 38 40% 16%;
+    --coral: 8 90% 66%;
+    --coral-soft: 8 40% 16%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper font-body text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-cobalt/20 text-ink;
+  }
+
+  /* Visible keyboard focus everywhere — never remove without a replacement. */
+  :focus-visible {
+    outline: 2px solid hsl(var(--cobalt));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+@layer utilities {
+  .container-shell {
+    @apply mx-auto w-full max-w-6xl px-6 md:px-8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
