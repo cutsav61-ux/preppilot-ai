@@ -1,0 +1,16 @@
+# Optional local development convenience: spins up a MongoDB instance
+# so you don't need an Atlas connection string while developing Phase 0/1.
+# Usage: docker-compose up -d
+# Then set MONGODB_URI=mongodb://localhost:27017/ai-interview-platform in server/.env
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: ai-interview-platform-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./.mongo-data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: ai-interview-platform
